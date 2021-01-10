@@ -1,0 +1,57 @@
+<head>
+  <script type="text/javascript" charset="utf-8" src="../cordova.js"></script>
+</head>
+<body>
+  <div class="container-fluid" >
+    <div
+      class="col-md-12 col-lg-12 mb-3 text-center"
+      style="border-top: 1px solid #251d34"
+    >
+      <img
+        class="responsiveFooter mt-3"
+        src="../assets/images/footerapp.png "
+        alt=""
+        style="margin-bottom: 12% !important;"
+      />
+    </div>
+  </div>
+  <script src="https://cdn.metroui.org.ua/v4.3.2/js/metro.min.js"></script>
+  <div class="bottom-nav pos-absolute" style="position: fixed !important;background: white;z-index: 999999;" id="bottomNav">
+  <button class="button" style="background: white !important;" onclick="goToPage('../index.html')">
+        <span class="">
+          <img src="../assets/images/home.png" alt="">
+        </span>
+        <span class="label">Home</span>
+    </button>
+    <button class="button" style="background: white !important;" onclick="goToPage('../category.html')">
+        <span class="">
+          <img src="../assets/images/category.png" alt="">
+        </span>
+        <span class="label">Categories</span>
+    </button>
+    <button class="button" style="background: white !important;" data-toggle="modal" data-target="#modalYT">
+      <span class="">
+        <img src="../assets/images/offer.png" alt="">
+      </span>
+      <span class="label">Offer</span>
+  </button>
+  <button class="button" style="background: white !important;" onclick="goToPage('../UserDash/customerProfile.html')">
+    <span class="">
+      <img src="../assets/images/profile.png" alt="">
+    </span>
+    <span class="label">Profile</span>
+</button>
+  </div>
+</body>
+
+  
+
+<script>
+  let user = window.localStorage.getItem("locLoggedInUser");
+  if (!user || user == "null" || user == null) {
+    document.getElementById("authway").style.display = "block";
+  }
+  function goToPage(url){
+    window.location=url
+  }
+</script>

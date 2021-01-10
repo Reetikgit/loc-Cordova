@@ -1,0 +1,23 @@
+<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+
+<div class="container-fluid" >
+  <div
+    class="col-md-12 col-lg-12 mb-3 text-center"
+    style="border-top: 1px solid #251d34"
+  >
+    <img
+      class="responsiveFooter mt-3"
+      src="./assets/images/footerapp.png "
+      alt=""
+      style="margin-bottom: 12% !important;"
+    />
+  </div>
+</div>
+  
+
+<script>
+  let user = window.localStorage.getItem("locLoggedInUser");
+  if (!user || user == "null" || user == null) {
+    document.getElementById("authway").style.display = "block";
+  }
+</script>
