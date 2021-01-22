@@ -22,7 +22,13 @@ db.collection('coupans').onSnapshot(snapshots => {
     }
     card += displayCard(docData);
   }
-  allcoupansHTML.innerHTML = card;
+  if(card==''){
+    card=`<h3>No Coupons Available  </h3>`
+    allcoupansHTML.innerHTML = card;
+  }else{
+    allcoupansHTML.innerHTML = card;
+  }
+
 })
 
 const deleteCoupan = id => {
@@ -73,4 +79,18 @@ const displayDisAmt = (coupanCat, amt) => {
       discountAmt = `${amt}%`;
     }
   return discountAmt;
+}
+const copyToClipboard = (rand1, rand2) => {
+  document.getElementById(rand2).style.display = "block";
+  setTimeout(function () {
+    document.getElementById(rand2).style.display = "none";
+  }, 1000)
+  var $temp = $("<input>");
+  $("body").append($temp);
+  let tempEl = `#${rand1}`;
+  
+  $temp.val($(tempEl).text()).select();
+  document.execCommand("copy");
+  $temp.remove();
+  $('[data-toggle="tooltip"]').tooltip();
 }

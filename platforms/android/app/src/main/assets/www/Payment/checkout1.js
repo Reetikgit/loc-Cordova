@@ -322,7 +322,7 @@ const checkCoupon = async (e) => {
       document.getElementById("applied").innerHTML =
         "Applied &nbsp;" +
         appliedCoupan +
-        ' &nbsp;<i style="color: red; cursor:pointer" onclick="removeCoupan()" class="fa fa-times"></i>';
+        ' &nbsp;<i style="color: red; cursor:pointer" onclick="removeCoupan()" class="fa fa-t"></i>';
       document.getElementById("applied").style.display = "block";
       $("#coupon-form,#check-coupon-form").toggle();
       document.getElementById("coupon-link").style.display = "none";

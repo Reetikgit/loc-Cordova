@@ -149,7 +149,7 @@
 
   setInterval(function () {
 
-    if (auth != "null") {
+    if (auth != "null" && auth!=null) {
 
       window.location = "../index.html"
     }
@@ -228,13 +228,37 @@
                             await dbref.doc(doc.id).update(udata);
                             let orderId = buyNowProd.orderId;
                             await sessionStorage.removeItem("buyNowProd");
-                            window.location = `../Payment/checkout.html?checkout=${orderId}`;
+                            await db.collection('paymentStatus').doc(uId).set({status:false}).then(() => {
+                           
+                            }).catch(e => {
+                              alert('error')
+                              alert(e.message);
+                            })
+                            window.open=cordova.InAppBrowser.open(`https://lakeofcakes.com/Payment/checkout.html?checkout=${orderId}&&user=${uId}`, `_blank`, `location=no`);
                           })
 
                           /////////////////////////////////////////////////////////////////////////////////////////
-                        } else {
+                        } 
+
+                        else {
+                          let cartLocal = window.localStorage.getItem('cartLocal');
+                          if(cartLocal) {
+                            uRef.get().then(async (udoc) => {
+                              let udata = udoc.data();
+                              cartLocal = JSON.parse(cartLocal);
+                              if(udata.cart) {
+                                udata.cart.push(cartLocal);
+                              } else {
+                                udata.cart = [];
+                                udata.cart.push(cartLocal);
+                              }
+                              await uRef.update(udata);
+                              window.location.replace(`./../UserDash/cart.html`);
+                            })
+                          }else{
                           window.location = "../UserDash/customerProfile.html";
                         }
+                      }
                         break;
                       }
                     }

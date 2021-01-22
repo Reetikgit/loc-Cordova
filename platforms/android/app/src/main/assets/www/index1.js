@@ -64,6 +64,36 @@ db.collection("sliders").onSnapshot(async (snapshots) => {
   }
 
   introCarouselHTML.innerHTML = img;
+  var $mainSlider = $('.intro-carousel');
+ 
+  // setInterval(() => {
+      if($('.intro-content').length > 1)
+       {
+      $mainSlider.owlCarousel({
+          loop: true,
+          //navText: ['<i class="fas fa-angle-double-left"></i>', '<i class="fas fa-angle-double-right"></i>'],
+          nav: false,
+          dots: true,
+          autoplay: true,
+          
+          // animateIn: 'fadeIn', // add this,
+          // animateOut: 'fadeIn', // and this
+          autoplayTimeout: 6000,
+          smartSpeed: 3000,
+      
+          responsive: {
+              0: {
+                  dots: false,
+                  items: 1
+              },
+              768: {
+                  items: 1
+              }
+          },
+  
+      });
+  }
+
 });
 
 // fixed section 1
@@ -760,7 +790,7 @@ cards6Ref.get().then(async (card6Snaps) => {
       wholecard6 += eachcard6;
     }
   }
-
+  if(wholecard6)
   userDefined6cardsHTML.innerHTML = wholecard6;
 });
 
@@ -833,12 +863,12 @@ db.collection("sections")
       `">
       </div>
         `;
-
+    
     document.getElementById("img42Mainmob").innerHTML =
       `
- 
+      
         <div class="bannerMainImage col-md-5 col-5"
-          style="background: #fff; padding-top: 2px; padding-bottom: 15px; height: 215px;">
+          style="background: #fff; padding-top: 2px; padding-bottom: 15px; ">
           <img style="width: 100px; height:100px ; object-fit: contain;margin-left:auto;margin-right:auto;display:block" class="mt-3 mb-2" src="` +
       docData.mainImg.imgUrl +
       `">
@@ -909,7 +939,7 @@ db.collection("sections")
       `
  
     <div class="bannerMainImage col-md-5 col-5"
-      style="background: #fff; padding-top: 2px; padding-bottom: 15px; height: 215px;">
+      style="background: #fff; padding-top: 2px; padding-bottom: 15px; height:unset;">
       <img  class="mt-3 mb-2 resImg" src="` +
       docData.mainImg.imgUrl +
       `">
@@ -1222,24 +1252,30 @@ db.collection("categories").onSnapshot(async (snapshots) => {
   );
   wholeNavigationMobile.innerHTML = liMob;
   $(".menu > ul > li").hover(function (e) {
+    
+    $('.menu > ul > li > a').css('z-index', 1000);
     if ($(window).width() > 943) {
-      $(this).children("ul").stop(true, false).fadeToggle(150);
+      // $(this).children("ul").stop(true, false).fadeToggle(150);
       e.preventDefault();
     }
   });
   $(".menu > ul > li").click(function () {
+ 
     if ($(window).width() <= 943) {
-      $(this).children("ul").fadeToggle(150);
+      $('.menu > ul > li > a').css('z-index', 1000);
+      // $(this).children("ul").fadeToggle(150);
     }
   });
+ 
   $(".menu-mobile").click(function (e) {
-    $(".menu > ul").toggleClass("show-on-mobile");
+    $('.menu > ul > li > a').css('z-index', 1000);
+    // $(".menu > ul").toggleClass("show-on-mobile");
     e.preventDefault();
   });
 
   $(window).resize(function () {
     $(".menu > ul > li").children("ul").hide();
-    $(".menu > ul").removeClass("show-on-mobile");
+    // $(".menu > ul").removeClass("show-on-mobile");
   });
 });
 function navigateTo(location) {
@@ -1414,7 +1450,7 @@ function navigateTo(location) {
 //   console.log(e.key);
 // }
 
-{
+//{
   /* <div class="extra-list">
   <ul>
     <li>
@@ -1424,7 +1460,7 @@ function navigateTo(location) {
     </li>
   </ul>
 </div> */
-}
+//}
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -1489,10 +1525,6 @@ if (localStorage.getItem("locLoggedInUser")) {
                   </li>
                 </ul>
                 </div>
-
-
-              
-               
               
                 `
                 

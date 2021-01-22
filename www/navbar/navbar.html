@@ -1,0 +1,562 @@
+<style>
+  .spanText {
+    color: black;
+  }
+  #loading {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: fixed;
+    display: block;
+    opacity: 0.7;
+    background-color: #fff;
+    z-index: 99;
+    text-align: center;
+  }
+
+  #loading-image {
+    position: absolute;
+    top: 100px;
+    /* left: 240px; */
+    z-index: 100;
+  }
+</style>
+<div id="loading">
+  <img
+    id="loading-image"
+    src="https://miro.medium.com/max/1600/1*CsJ05WEGfunYMLGfsT2sXA.gif"
+    alt="Loading..."
+  />
+</div>
+
+<div id="touchSideSwipe" class="menu touch-side-swipe">
+  <div class="logo-area">
+    <div class="logo">
+      <a href="#!">
+        <img
+          src="./assets/images/logo-min.png"
+          alt="Logo Lake of cakes"
+          style="width: 350px"
+        />
+      </a>
+    </div>
+    <i
+      class="fa fa-t"
+      style="float: right; position: relative; padding: 10px; margin-left: 20%"
+      id="hideNavigation"
+    ></i>
+  </div>
+  <ul id="whole-navigation-mobile">
+    <!-- <li><a href="#">navbar</a></li>
+            <li><a href="#">navbar</a></li>
+            <li><a href="#">navbar</a></li>
+            <li><a href="#">navbar</a></li>
+            <li><a href="#">navbar</a></li>
+            <li><a href="#">navbar</a></li>
+            <li><a href="#">navbar</a></li>
+            <li><a href="#">navbar</a></li>
+            <li><a href="#">navbar</a></li>
+            <li><a href="#">navbar</a></li>
+            <li><a href="#">navbar</a></li> -->
+  </ul>
+  <hr />
+  <ul style="overflow: hidden">
+    <div class="nav-collapsible">
+      <a href="./midNight.html">
+        <label for="nav-collapsible-1" style="width: 100%">
+          <div class="row pl-3">
+            <div class="col-2 col-sm-2 col-md-2 p-0">
+              <span>
+                <img
+                  src="./assets/images/MidnightDelivery.png"
+                  alt="Lake of Cakes midnight"
+                  style="width: 25px"
+                />
+              </span>
+            </div>
+            <div class="col-8 col-sm-8 col-md-8 p-0">
+              <span style="position: relative; top: 4px" class="spanText"
+                >MIDNIGHT
+              </span>
+            </div>
+            <div class="col-2 col-sm-2 col-md-2 p-0">
+              <span style="position: relative; top: 8px">
+                <i class="fas fa-chevron-right"></i>
+              </span>
+            </div>
+          </div>
+        </label>
+      </a>
+    </div>
+    <div class="nav-collapsible">
+      <a href="#">
+        <label for="nav-collapsible-1" style="width: 100%">
+          <div class="row pl-3">
+            <div class="col-2 col-sm-2 col-md-2 p-0">
+              <span>
+                <img
+                  src="./assets/images/chef.png"
+                  alt="Lake of Cakes Chef"
+                  style="width: 25px"
+                />
+              </span>
+            </div>
+            <div class="col-8 col-sm-8 col-md-8 p-0">
+              <span style="position: relative; top: 4px" class="spanText"
+                >Be A Chef
+              </span>
+            </div>
+            <div class="col-2 col-sm-2 col-md-2 p-0">
+              <span style="position: relative; top: 8px">
+                <i class="fas fa-chevron-right"></i>
+              </span>
+            </div>
+          </div>
+        </label>
+      </a>
+    </div>
+    <div class="nav-collapsible">
+      <a href="#">
+        <label for="nav-collapsible-1" style="width: 100%">
+          <div class="row pl-3">
+            <div class="col-2 col-sm-2 col-md-2 p-0">
+              <span>
+                <img
+                  style="width: 25px"
+                  data-toggle="modal"
+                  data-target="#reminderModal"
+                  src="./assets/images/reminder.png"
+                  alt=""
+                />
+              </span>
+            </div>
+            <div class="col-8 col-sm-8 col-md-8 p-0">
+              <span
+                style="position: relative; top: 4px"
+                class="spanText"
+                data-toggle="modal"
+                data-target="#reminderModal"
+                onclick="openModal(`reminderModal`)"
+                >Reminder
+              </span>
+            </div>
+            <div class="col-2 col-sm-2 col-md-2 p-0">
+              <span style="position: relative; top: 8px">
+                <i class="fas fa-chevron-right"></i>
+              </span>
+            </div>
+          </div>
+        </label>
+      </a>
+    </div>
+    <hr />
+
+    <div class="nav-collapsible">
+      <a href="./UserDash/customerProfile.html">
+        <label for="nav-collapsible-1" style="width: 100%">
+          <div class="row pl-3">
+            <div class="col-10 col-sm-10 col-md-10 p-0">
+              <span style="position: relative; top: 4px" class="spanText"
+                ><i class="fa fa-user"></i> Your Account/Orders
+              </span>
+            </div>
+            <div class="col-2 col-sm-2 col-md-2 p-0">
+              <span style="position: relative; top: 8px">
+                <i class="fas fa-chevron-right"></i>
+              </span>
+            </div>
+          </div>
+        </label>
+      </a>
+    </div>
+    <div class="nav-collapsible">
+      <a href="#">
+        <label for="nav-collapsible-1" style="width: 100%">
+          <div class="row pl-3">
+            <div class="col-10 col-sm-10 col-md-10 p-0">
+              <span
+                style="position: relative; top: 4px"
+                class="spanText"
+                onclick="window.open('./Footer/ContactUs.html')"
+                ><i class="fa fa-question-circle"></i> Contact us
+              </span>
+            </div>
+            <div class="col-2 col-sm-2 col-md-2 p-0">
+              <span style="position: relative; top: 8px">
+                <i class="fas fa-chevron-right"></i>
+              </span>
+            </div>
+          </div>
+        </label>
+      </a>
+    </div>
+
+    <div class="nav-collapsible">
+      <a>
+        <label for="nav-collapsible-1" style="width: 100%">
+          <div class="row pl-3">
+            <div class="col-10 col-sm-10 col-md-10 p-0">
+              <span
+                style="position: relative; top: 4px"
+                class="spanText"
+                data-toggle="modal"
+                data-target="#modalYT"
+                onclick="openModal(`modalYT`)"
+                ><i class="fa fa-gift"></i> Offers
+              </span>
+            </div>
+            <div class="col-2 col-sm-2 col-md-2 p-0">
+              <span style="position: relative; top: 8px">
+                <i class="fas fa-chevron-right"></i>
+              </span>
+            </div>
+          </div>
+        </label>
+      </a>
+    </div>
+    <div class="nav-collapsible">
+      <a href="./Common/coupans.html">
+        <label for="nav-collapsible-1" style="width: 100%">
+          <div class="row pl-3">
+            <div class="col-10 col-sm-10 col-md-10 p-0">
+              <span style="position: relative; top: 4px" class="spanText"
+                ><i class="fa fa-tag fa-lg"></i> Coupons</span
+              >
+            </div>
+            <div class="col-2 col-sm-2 col-md-2 p-0">
+              <span style="position: relative; top: 8px">
+                <i class="fas fa-chevron-right"></i>
+              </span>
+            </div>
+          </div>
+        </label>
+      </a>
+    </div>
+
+    <div class="nav-collapsible" style="display: none" id="logoutMobile">
+      <a href="#!" onclick="logOut()">
+        <label for="nav-collapsible-1" style="width: 100%">
+          <div class="row pl-3">
+            <div class="col-10 col-sm-10 col-md-10 p-0">
+              <span style="position: relative; top: 4px" class="spanText">
+                <i class="fas fa-power-off"></i> Log Out</span
+              >
+            </div>
+            <div class="col-2 col-sm-2 col-md-2 p-0">
+              <span style="position: relative; top: 8px">
+                <i class="fas fa-chevron-right"></i>
+              </span>
+            </div>
+          </div>
+        </label>
+      </a>
+    </div>
+    <div class="nav-collapsible" id="loginMobile">
+      <a href="./Auth/login.html">
+        <label for="nav-collapsible-1" style="width: 100%">
+          <div class="row pl-3">
+            <div class="col-10 col-sm-10 col-md-10 p-0">
+              <span style="position: relative; top: 4px" class="spanText">
+                <i class="fa fa-sign-in"></i> Log In</span
+              >
+            </div>
+            <div class="col-2 col-sm-2 col-md-2 p-0">
+              <span style="position: relative; top: 8px">
+                <i class="fas fa-chevron-right"></i>
+              </span>
+            </div>
+          </div>
+        </label>
+      </a>
+    </div>
+  </ul>
+</div>
+
+<div
+  class="modal fade"
+  id="reminderModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="reminderModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content container">
+      <div class="modal-header reminderHeader" style="width: 100%">
+        <h5
+          class="modal-title"
+          id="reminderModalLabel"
+          style="padding: 10px; text-align: center !important; font-weight: 800"
+        >
+          We will notify you on the selected day
+        </h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label"
+              >Select a Date</label
+            >
+            <input
+              type="date"
+              required
+              class="form-control"
+              id="reminder-date"
+            />
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label"
+              >Type of Occasion</label
+            >
+            <input
+              type="text"
+              required
+              placeholder="Birthday , Aniversary, etc...."
+              class="form-control"
+              id="reminder-type"
+            />
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label"
+              >Enter a Email id</label
+            >
+            <input
+              type="email"
+              required
+              placeholder="must include @"
+              class="form-control"
+              id="reminder-email"
+            />
+          </div>
+        </form>
+      </div>
+      <h5
+        style="
+          font-weight: 500;
+          font-size: 15px;
+          padding: 20px;
+          display: none;
+          color: green;
+        "
+        id="reminderMessage"
+      >
+        Notification Enabled Successfully<i class="fa fa-check"></i>
+      </h5>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Close
+        </button>
+        <button type="button" class="btn btn-primary" onclick="sendReminder()">
+          Notify Me
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<div
+  class="modal fade"
+  id="modalYT"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="myModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg" role="document">
+    <!--Content-->
+    <div class="modal-content">
+      <!--Body-->
+      <div class="modal-body mb-0 p-0">
+        <div
+          class="embed-responsive embed-responsive-16by9 z-depth-1-half"
+          style="height: 600px"
+        >
+          <img
+            class="img-fluid embed-responsive-item imgresponsive"
+            style="object-fit: cover; height: 450px !important"
+            id="showOffer"
+            src=""
+            allowfullscreen
+          />
+        </div>
+      </div>
+
+      <!--Footer-->
+      <div class="modal-footer justify-content-center flex-column flex-md-row">
+        <button
+          type="button"
+          class="btn btn-outline-primary btn-rounded btn-md ml-4"
+          data-dismiss="modal"
+        >
+          Close
+        </button>
+      </div>
+    </div>
+    <!--/.Content-->
+  </div>
+</div>
+
+<!---->
+<!-- <script src="https://www.gstatic.com/firebasejs/7.6.0/firebase-auth.js"></script> -->
+<script type="text/javascript">
+  setTimeout(function () {
+    $("#loading").hide();
+  }, 2500);
+</script>
+<script type="text/javascript">
+  var config = {
+    elementID: "touchSideSwipe",
+    elementWidth: 400, //px
+    elementMaxWidth: 0.8, // *100%
+    sideHookWidth: 44, //px
+    moveSpeed: 0.2, //sec
+    opacityBackground: 0.8,
+    shiftForStart: 50, // px
+    windowMaxWidth: 1024, // px
+  };
+  var touchSideSwipe = new TouchSideSwipe(config);
+</script>
+<script>
+  // demo open/close on load document
+  // setTimeout(function() {touchSideSwipe.tssOpen()}, 2000);
+  // setTimeout(function() {touchSideSwipe.tssClose()}, 3500);
+  // demo open/close buttons
+  // document.getElementById('callOpen').addEventListener('click', function(){touchSideSwipe.tssOpen()});
+  // document.getElementById('callClose').addEventListener('click', function(){touchSideSwipe.tssClose()});
+
+  const wholeNavigationPcHTML = document.querySelector("#whole-navigation-pc");
+
+  const extractChildCat = (data, subId, docId) => {
+    let childLi = "";
+    data.childCategories.map((doc) => {
+      // let docData = doc.data();
+      childLi += `
+      <li><a href="./Products/products.html?cat=${docId}&&sub=${subId}&&child=${doc.id}">${doc.name}</a></li>
+    `;
+    });
+    // console.log(childLi);
+    return childLi;
+  };
+
+  const extractSubCat = (data, docId) => {
+    let subLi = "";
+    data.subCategory.map((doc) => {
+      // let docData = doc.data();
+      let childCat = extractChildCat(doc, doc.id, docId);
+
+      subLi += `
+    <li >
+      <a style="top:0;padding:5px !important;position:sticky;z-index:999 !important;background:white !important" href="./Products/products.html?cat=${docId}&&sub=${doc.id}">${doc.name}</a>
+      <ul style="z-index:0 !important" > ${childCat}</ul>
+    </li>
+    `;
+    });
+    return subLi;
+  };
+
+  db.collection("categories").onSnapshot(async (snapshots) => {
+    let snapshotDocs = snapshots.docs;
+    let li = "";
+    let liMob = "";
+    let tempArr = [];
+    for (let doc of snapshotDocs) {
+      let docData = doc.data();
+      // console.log(docData);
+      tempArr.push({ d: docData, dId: doc.id });
+    }
+
+    tempArr.sort(function (a, b) {
+      return +b.d.priority - +a.d.priority;
+    });
+
+    for (let data of tempArr) {
+      // console.log(data);
+      let subCat = extractSubCat(data.d, data.dId);
+      li += `
+      <li >
+        <a href="./Products/products.html?cat=${data.dId}"> ${data.d.name}</a>
+        <ul>
+          ${subCat}
+         
+        </ul>
+      </li>
+      `;
+      liMob += `
+      <li >
+        <a href="#!" ><span onclick="navigateTo('./Products/products.html?cat=${data.dId}')"><i class="fa fa-sliders"></i> ${data.d.name}</span><i class="fa fa-chevron-down" style="margin-left: 10%;float: right;"></i></a>
+        <ul>
+          ${subCat}
+      
+        </ul>
+      </li>`;
+    }
+    //   const wholeNavigationPcHTML = document.querySelector("#whole-navigation-pc");
+    //   wholeNavigationPcHTML.innerHTML = li;
+    const wholeNavigationMobile = document.querySelector(
+      "#whole-navigation-mobile"
+    );
+    wholeNavigationMobile.innerHTML = liMob;
+
+    $(".menu > ul > li").hover(function (e) {
+      $(".menu > ul > li > a").css("z-index", 1000);
+      if ($(window).width() > 943) {
+        $(this).children("ul").stop(true, false).fadeToggle(150);
+        e.preventDefault();
+      }
+    });
+    $(".menu > ul > li").click(function () {
+      $(".menu > ul > li > a").css("z-index", 1000);
+      if ($(window).width() <= 943) {
+        $(".menu > ul > li > a").css("z-index", 1000);
+        $(this).children("ul").fadeToggle(150);
+      }
+    });
+    $(".menu-mobile").click(function (e) {
+      $(".menu > ul > li > a").css("z-index", 1000);
+      $(".menu > ul").toggleClass("show-on-mobile");
+      e.preventDefault();
+    });
+
+    $(window).resize(function () {
+      $(".menu > ul > li").children("ul").hide();
+      $(".menu > ul").removeClass("show-on-mobile");
+    });
+  });
+
+  function openModal(id) {
+    $("#" + id).modal("show");
+  }
+  let checkUser2 = window.localStorage.getItem("locLoggedInUser");
+  if (checkUser2 && checkUser2 != "null") {
+    document.getElementById("logoutMobile").style.display = "block";
+    document.getElementById("loginMobile").style.display = "none";
+  } else {
+    document.getElementById("logoutMobile").style.display = "none";
+    document.getElementById("loginMobile").style.display = "block";
+  }
+
+  function logOut() {
+    let dbref = db.collection("Customers");
+
+    dbref
+      .doc(checkUser)
+      .update({
+        token: "null",
+      })
+      .then(function () {
+        window.localStorage.setItem("locLoggedInUser", "null");
+        window.plugins.googleplus.logout(function (msg) {
+          alert("Logged Out Successfully");
+          location.reload(); // do something useful instead of alerting
+        });
+      });
+  }
+</script>

@@ -15,6 +15,12 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
+    <preference name = "SplashScreen" value = "screen" />
+    <preference name = "SplashScreenDelay" value = "2000" />
+    <preference name = "SplashMaintainAspectRatio" value = "true" />
+
+
+    <plugin name="cordova-plugin-splashscreen" source="npm" />
     <platform name="android">
         <allow-intent href="market:*" />
     </platform>
@@ -32,4 +38,5 @@
     
     <!-- <preference name="AndroidLaunchMode" value="singleTask" /> -->
     <icon src="logo.png"/>
+    <splash src="splah.jpg" />
 </widget>

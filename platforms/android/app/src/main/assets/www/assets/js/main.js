@@ -212,7 +212,7 @@ $(".categories_menu_inner > ul > li.dropdown_list .link-area > a").each(function
         
             });
         }
-    },1000);
+    },2000);
         
     
         if($('.intro-content').length > 1)

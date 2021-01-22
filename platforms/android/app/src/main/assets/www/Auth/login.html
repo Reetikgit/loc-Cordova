@@ -224,7 +224,7 @@
 
                                 </label> -->
               <button class="btn btn-style mt-3" id="log">Sign In </button>
-              <p class="already">Don't have an account? <a href="signup.html">Sign Up</a></p>
+              <p class="already">Don't have an account? <a href="./signup.html">Sign Up</a></p>
               <a style="cursor: pointer; " data-toggle="modal" data-target="#forgot">
                 <p class="already" style="font-weight: 700;font-size: 14px;" id="myBtn">Forgot Password?</p>
               </a>
@@ -372,6 +372,7 @@
         ////////////////////////////////////////////////////////////////////
         let uId = window.localStorage.getItem('locLoggedInUser');
         let buyNowProd = window.sessionStorage.getItem('buyNowProd');
+        
         if (buyNowProd) {
           // let uRef = db.collection('Customers').doc(uId);
           userRef.get().then(async (udoc) => {
@@ -386,12 +387,39 @@
             }
             await userRef.update(udata);
             let orderId = buyNowProd.orderId;
-            await sessionStorage.removeItem("buyNowProd");
-            window.open=cordova.InAppBrowser.open(`https://lakeofcakes.com/Payment/checkout.html?checkout=${orderId}&&user=${checkUser}`, `_blank`, `location=no`);
+            // await sessionStorage.removeItem("buyNowProd");
+            // alert(390);
+            // alert(orderId, uId);
+            await db.collection('paymentStatus').doc(uId).set({status:false}).then(() => {
+        
+          }).catch(e => {
+            alert('error')
+            alert(e.message);
+          })
+            var refBrowser=cordova.InAppBrowser.open(`https://lakeofcakes.com/Payment/checkout.html?checkout=${orderId}&&user=${uId}`, `_blank`, `location=no`);
             
             // window.location = `../Payment/checkout.html?checkout=${orderId}`;
           })
-        } else {
+        }
+         else {
+
+          let cartLocal = window.localStorage.getItem('cartLocal');
+          if(cartLocal) {
+            userRef.get().then(async (udoc) => {
+              let udata = udoc.data();
+              cartLocal = JSON.parse(cartLocal);
+              if(udata.cart) {
+                udata.cart.push(cartLocal);
+              } else {
+                udata.cart = [];
+                udata.cart.push(cartLocal);
+              }
+              await userRef.update(udata);
+              window.location.replace(`./../UserDash/cart.html`);
+            })
+          }else{
+
+          
           setTimeout(function () {
           let goTo = window.localStorage.getItem("redirectURL");
           if (goTo != null && (goTo != "null"))
@@ -404,7 +432,7 @@
             window.location = "../index.html"
         }, 100)
         }
-      } else {
+      } }else {
         document.getElementById("log").innerHTML = "Invalid Credentials"
         document.getElementById("log").style.backgroundColor = 'red'
         setTimeout(function () {
@@ -577,36 +605,38 @@
     //     sendtoken=token;
       
     //   });
-    // window.open = cordova.InAppBrowser.open;
+    // var refBrowser = cordova.InAppBrowser.open;
   // scordova.InAppBrowser.open('https://lakeofcakes.com/Auth/login.html', '_blank', 'location=no');
-    // window.open = c
+    // var refBrowser = c
     window.plugins.googleplus.login({
-      
+      REVERSED_CLIENT_ID: 'com.googleusercontent.apps.779843608951-b64uui0s3r1vkodt37c0la9r660gd969'
      // optional, but requires the webClientId - if set to true the plugin will also return a serverAuthCode, which can be used to grant offline access to a non-Google server
-},  function (obj) {
+    },  function (obj) {
   
-
+     
 
       var counter=0;
-      db.collection("Customers").onSnapshot(async (snapshots) => {
-
+      db.collection("Customers").onSnapshot(async(snapshots)=> {
+ 
     
       let snapshotDocs = snapshots.docs;
       var dbref = db.collection('Customers');
       let USER_DATA;
-      for (let doc of snapshotDocs) {
-        // alert(6)
-        let docData = doc.data();
+      for (var doc of snapshotDocs) {
+     
+        var docData = doc.data();
         USER_DATA = docData;
-    //     cordova.plugins.firebase.messaging.getToken().then(function(token) {
-    // console.log("Got device token: ", token);
-    // alert(token)
-// });
+        var document=doc;
+        // alert(docData.Email +"--->"+obj.email)
         if (docData.Email == obj.email) {
           // window.FirebasePlugin.getToken(function(token){
           // var sendtoken=token;
-          
           // });
+   
+          if(obj.imageUrl==undefined){
+            obj.imageUrl="null"
+          }
+ 
           await dbref.doc(doc.id).update({
             UserName: obj.displayName,
             Email: obj.email,
@@ -614,23 +644,22 @@
             UserAuthID: obj.userId,
             userId:doc.id,
             token:btoa(obj.email),
-            // androidUserToken:sendtoken
+        
           });
           window.localStorage.setItem("locLoggedInUser",doc.id)
           counter++;
-      
           // user ? handleSignedInUser(user) : handleSignedOutUser();
           let goTo=window.localStorage.getItem("redirectURL");
-         
+          let uId = window.localStorage.getItem('locLoggedInUser');
           if(goTo!=null &&(goTo!="null")){
             if(goTo=="index.html"){
               window.location="../index.html"
             }else if(goTo.includes("product.html")){
-             
+           
               let buyNowProd = window.sessionStorage.getItem('buyNowProd');
-              alert(buyNowProd)
+              // alert(buyNowProd)
               if(buyNowProd) {
-              
+  
                 buyNowProd = JSON.parse(buyNowProd);
                 if(USER_DATA.orders) {
                   USER_DATA.orders.push(buyNowProd);
@@ -639,16 +668,42 @@
                   orders.push(buyNowProd);
                   USER_DATA.orders = orders;
                 }
-                await dbref.doc(doc.id).update(USER_DATA);
+              
                 let orderId = buyNowProd.orderId;
-              // sessionStorage.removeItem("buyNowProd");
-                window.open=cordova.InAppBrowser.open(`https://lakeofcakes.com/Payment/checkout.html?checkout=${orderId}&&user=${checkUser}`, `_blank`, `location=no`);
-                // window.location = `../Payment/checkout.html?checkout=${orderId}`;
+
+                sessionStorage.removeItem("buyNowProd");
+        
+                // alert(orderId, checkUser);
+                await db.collection('paymentStatus').doc(uId).set({status:false}).then(() => {
+             
+                }).catch(e => {
+                  alert('error')
+                  alert(e.message);
+                })
+                var refBrowser=cordova.InAppBrowser.open(`https://lakeofcakes.com/Payment/checkout.html?checkout=${orderId}&&user=${uId}`, `_blank`, `location=no`);
+                await dbref.doc(doc.id).update(USER_DATA);
+                
+                // window.location = `../index.html`;
                 // console.log(doc.data());
                 // let userRef = await db.collection("Customers").doc(userId);
               }else{
+                
+                let cartLocal = window.localStorage.getItem('cartLocal');
+                if(cartLocal) {
+                  cartLocal = JSON.parse(cartLocal);
+                  if(USER_DATA.cart) {
+                    USER_DATA.cart.push(cartLocal);
+                  } else {
+                    USER_DATA.cart = [];
+                    USER_DATA.cart.push(cartLocal);
+                  }
+                  await dbref.doc(doc.id).update(USER_DATA);
+                  window.location.replace(`./../UserDash/cart.html`);
+                } else {
+                  window.location=goTo;
+                }
                
-                window.location=goTo;
+                // window.location=goTo;
               }
              
             }else{
@@ -656,45 +711,36 @@
                window.location=goTo;
             }
         
-          }
- 
-          else{
+          }else{
    
             window.location="../index.html"
           }
-         
           break;
-         
-         
-        }else{
-          
-          var setWithMerge = dbref.add({
-            UserName: obj.displayName,
-            Email: obj.email,
-            Image: obj.imageUrl,
-            UserAuthID: obj.userId,
-            userId:doc.id,
-            token:btoa(obj.email),
-        });
+        
         }
-
-      }
-      if (counter == 0) {
-        if(obj.Email==null ||obj.Email=="null"){
-          obj.Email=""
-        }
-        var setWithMerge = dbref.add({
-          userName: obj.displayName,
-          Email: obj.email,
-          Image: obj.imageUrl,
-          createdDtm: firebase.firestore.FieldValue.serverTimestamp(),
-          lastLoginTime: firebase.firestore.FieldValue.serverTimestamp(),
-          token:"newuser",
-          Phone :obj.phoneNumber
-        });
      
 
       }
+      if(counter==0){
+          
+  
+          let image=obj.imageUrl;
+    
+        if(obj.imageUrl==undefined){
+          image="null"
+        }
+ 
+          var setWithMerge = dbref.add({
+            UserName: obj.displayName,
+            Email: obj.email,
+            Image: image,
+            UserAuthID: obj.userId,
+            token:btoa(obj.email),
+        }).then(function(){
+          alert("Welcome "+obj.displayName)
+        });
+        
+        }
     });
       // do something useful instead of alerting
     },

@@ -63,7 +63,7 @@
                 <img src="../assets/images/logo-min.png" alt="Logo Lake of cakes" style="width: 350px;">
               </a>
             </div>
-            <i class="fa fa-times" style="float: right; position: relative;padding: 10px;margin-left: 20%;"
+            <i class="fa fa-t" style="float: right; position: relative;padding: 10px;margin-left: 20%;"
               onclick="hidenavigation()"></i>
           </div>
           <div class="menu-container">
@@ -160,7 +160,7 @@
                 <label for="nav-collapsible-1" style="width: 100%;">
                   <div class="row pl-3">
                     <div class="col-10 col-sm-10 col-md-10 p-0">
-                      <span style="position: relative; top: 4px;">Contact us </span>
+                      <span style="position: relative; top: 4px;" onclick="window.open('../Footer/contactUs.html')">Contact us </span>
                     </div>
                     <div class="col-2 col-sm-2 col-md-2 p-0">
                       <span style="position: relative; top: 8px;">
@@ -742,8 +742,11 @@
       if ($('.drobt0').hasClass('drobt1')) {
         $('.drobt0').removeClass('drobt1');
         $('.drobt0').addClass('drobt2');
+                scrollNav(0, speed);
+                $('body').addClass("fixed-position");
       } else {
-        $('.drobt0').removeClass('drobt2');
+              $('.menu > ul > li > a').css('z-index', -1);
+      $('.drobt0').removeClass('drobt2');
         $('.drobt0').addClass('drobt1');
       }
     });
@@ -924,9 +927,9 @@
         window.localStorage.setItem("locLoggedInUser","null")
         window.plugins.googleplus.logout(
             function (msg) {
-              alert("Logged Out Successfully"); // do something useful instead of alerting
+              alert("Logged Out Successfully");      location.reload();// do something useful instead of alerting
             });
-        location.reload();
+   
       });
     }
   </script>

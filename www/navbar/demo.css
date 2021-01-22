@@ -1,0 +1,21 @@
+
+
+
+@media(max-width:1023px){
+    .touch-side-swipe{
+        background: hsl(0, 0%, 100%);
+    }
+}
+@media(min-width:1024px){
+    .touch-side-swipe li {
+        display: block;
+        float: left;
+        padding: 4px;
+        margin-right: 5px;
+        border-radius: 2px;
+        border: 1px solid #fff;
+    }
+}
+.touch-side-swipe ul{display: block;overflow-y:overlay;margin: 0; padding: 0;line-height: 30px}
+.touch-side-swipe a {color:#fff;}
+*{box-sizing: border-box}

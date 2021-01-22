@@ -14529,6 +14529,10 @@ a:hover {
 
 .owl-carousel .owl-item img {
     transform-style: preserve-3d;
+    padding-left: 2%;
+    padding-right: 2%;
+    border-radius: 8%;
+    
 }
 
 /* 
@@ -34648,6 +34652,9 @@ section.phone-and-accessories.categori-item {
     .slider-buttom-category .sc-common-padding {
         padding: 3px 3px!important;
     }
+    #showOffer {
+        object-fit: contain !important;
+    }
 }
 
 @media only screen and (max-width:780px) {
@@ -34666,11 +34673,18 @@ input[type="checkbox"]:checked {
         
                  background-color: red !important;
                  color: red ;
+                 
             }
 
 .nav-collapsible{
-    font-size: 13px;
+    font-size: 14px;
+    color: black;
 }
+.nav-collapsible-1{
+    font-size: 14px;
+    color: black;
+}
+
 bottom-nav {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -34717,3 +34731,43 @@ bottom-nav .button {
     z-index: 999999;
 }
 
+.swipe-area {
+    /* position: absolute; */
+    width: 80%;
+    left: 0;
+    top: 0;
+    height: 100%;
+    /* background: #f3f3f3;
+    z-index: 0; */
+    z-index: 99999999;
+}
+.swipe-area2 {
+    /* position: absolute; */
+    width: 100%;
+    left: 0;
+    top: 0;
+    height: 100%;
+    /* background: #f3f3f3;
+    z-index: 0; */
+}
+aside{
+    z-index: 9999999999999999999 !important;
+}
+.modal{
+    z-index: 99999999999999999999 !important;
+}
+/* .bottom-nav .button:hover {
+    
+  background-color: red !important;
+  border-radius: 1px solid red;
+  color: black !important;
+} */
+.fixed-position{
+    position: fixed;
+}
+/* span{
+    color: unset !important;
+} */
+span:hover{
+  color: red !important;  
+}

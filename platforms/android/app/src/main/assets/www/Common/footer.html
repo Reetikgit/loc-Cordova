@@ -1,6 +1,9 @@
 <head>
   <script type="text/javascript" charset="utf-8" src="../cordova.js"></script>
 </head>
+<style>
+
+</style>
 <body>
   <div class="container-fluid" >
     <div
@@ -17,29 +20,38 @@
   </div>
   <script src="https://cdn.metroui.org.ua/v4.3.2/js/metro.min.js"></script>
   <div class="bottom-nav pos-absolute" style="position: fixed !important;background: white;z-index: 999999;" id="bottomNav">
-  <button class="button" style="background: white !important;" onclick="goToPage('../index.html')">
+  <button class="button" style="background: white" onclick="goToPage('../index.html')">
         <span class="">
-          <img src="../assets/images/home.png" alt="">
+          <i class="fa fa-home" aria-hidden="true">
+            <span class="label">Home</span>
+          </i>
         </span>
-        <span class="label">Home</span>
+      
     </button>
-    <button class="button" style="background: white !important;" onclick="goToPage('../category.html')">
+    <button class="button" style="background: white " onclick="goToPage('../category.html')">
         <span class="">
-          <img src="../assets/images/category.png" alt="">
+          <i class="fa fa-list" aria-hidden="true">
+            <span class="label">Categories</span>
+          </i>
         </span>
-        <span class="label">Categories</span>
+        
     </button>
-    <button class="button" style="background: white !important;" data-toggle="modal" data-target="#modalYT">
+    <button class="button" style="background: white " data-toggle="modal" data-target="#modalYT">
       <span class="">
-        <img src="../assets/images/offer.png" alt="">
+        <i class="fa fa-tag" aria-hidden="true">
+          <span class="label">Offer</span>
+        </i>
       </span>
-      <span class="label">Offer</span>
+     
   </button>
-  <button class="button" style="background: white !important;" onclick="goToPage('../UserDash/customerProfile.html')">
+  <button class="button" style="background: white " onclick="goToPage('../UserDash/customerProfile.html')">
     <span class="">
-      <img src="../assets/images/profile.png" alt="">
+      <i class="fa fa-user" aria-hidden="true">
+    
+        <span class="label">Profile</span>
+      </i>
     </span>
-    <span class="label">Profile</span>
+    
 </button>
   </div>
 </body>
@@ -47,6 +59,7 @@
   
 
 <script>
+  $('body').removeClass("fixed-position");
   let user = window.localStorage.getItem("locLoggedInUser");
   if (!user || user == "null" || user == null) {
     document.getElementById("authway").style.display = "block";
@@ -54,4 +67,56 @@
   function goToPage(url){
     window.location=url
   }
+
+
+  var NAV_WITH = 300;
+        var speed = 200;
+
+        var swipeOptions = {
+            triggerOnTouchEnd: true,
+            swipeStatus: swipeStatus,
+            allowPageScroll: "vertical",
+            threshold: 100
+        };
+
+        $(function () {
+            nav = $(".show-area");
+            nav.swipe(swipeOptions);
+        });
+
+    
+        function swipeStatus(event, phase, direction, distance) {
+
+            if (phase == "move" && (direction == "left")) {
+                var duration = 0;
+
+                $('body').removeClass("fixed-position");
+                scrollNav(distance, duration);
+
+            } else if (phase == "cancel") {
+                scrollNav(0, speed);
+                $('body').addClass("fixed-position");
+            } else if (phase == "end") {
+                hideNav();
+            }
+        }
+        function hideNav() {
+            scrollNav(NAV_WITH, speed);
+            $('body').removeClass("fixed-position");
+        }
+
+    
+
+        /**
+         * Manually update the position of the nav on drag
+         */
+        function scrollNav(distance, duration) {
+            nav.css("transition-duration", (duration / 1000).toFixed(1) + "s");
+            //inverse the number we set in the css
+            var value = (distance < 0 ? "" : "-") + Math.abs(distance).toString();
+            nav.css("transform", "translate(" + value + "px,0)");
+        }
+
+
+
 </script>

@@ -7,17 +7,33 @@
   >
     <img
       class="responsiveFooter mt-3"
-      src="./assets/images/footerapp.png "
-      alt=""
-      style="margin-bottom: 12% !important;"
-    />
+      src="./assets/images/footerapp.png "alt="" style="margin-bottom: 12% !important;">
   </div>
 </div>
   
 
 <script>
+  setInterval(function(){
+
+  if(navigator.connection.type == 'none' ) {
+    window.localStorage.setItem("url",window.location.href);
+    window.location = "noInternet.html"
+    // alert("LOST")
+  } else {
+    // alert("ITS THERE")
+    window.localStorage.removeItem("url");
+  }
+},1000)
+
+  $('body').removeClass("fixed-position");
   let user = window.localStorage.getItem("locLoggedInUser");
   if (!user || user == "null" || user == null) {
     document.getElementById("authway").style.display = "block";
   }
+  
+
+  
+
+
 </script>
+

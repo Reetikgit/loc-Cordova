@@ -11,10 +11,19 @@
       "PLAY_SERVICES_VERSION": "15.0.1",
       "PACKAGE_NAME": "com.loc.app"
     },
+    "cordova-plugin-inappbrowser": {
+      "PACKAGE_NAME": "com.loc.app"
+    },
     "cordova-plugin-whitelist": {
       "PACKAGE_NAME": "com.loc.app"
     },
-    "cordova-plugin-inappbrowser": {
+    "cordova-plugin-firebase-lib": {
+      "PACKAGE_NAME": "com.loc.app"
+    },
+    "cordova-plugin-network-information": {
+      "PACKAGE_NAME": "com.loc.app"
+    },
+    "cordova-plugin-splashscreen": {
       "PACKAGE_NAME": "com.loc.app"
     }
   },

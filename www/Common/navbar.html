@@ -60,7 +60,7 @@
     .responsiveIcon1 {
       /* margin: auto;
       padding: 0px; */
-      
+
     }
 
   }
@@ -107,10 +107,10 @@
                   <li><a href="mailto:lakeofcakess@gmail.com" class="track-btn"><span class="sign-in"
                         style="font-size: 14px; color: #000;"><i class="fa fa-envelope" aria-hidden="true"
                           style="color: red;"></i>
-                          Email</span> </a>
+                        Email</span> </a>
                   </li> &nbsp;
 
-                  
+
 
                 </ul>
               </div>
@@ -142,15 +142,15 @@
               <img src="../assets/images/logo-min.png" alt="Logo Lake of cakes" style="width: 350px;">
             </a>
           </div>
-          <i class="fa fa-times" style="float: right; position: relative;padding: 10px;margin-left: 20%;"
+          <i class="fa fa-t" style="float: right; position: relative;padding: 10px;margin-left: 20%;"
             onclick="hidenavigation()"></i>
         </div>
         <div class="menu-container">
           <div class="menu">
             <ul id="whole-navigation-mobile">
 
-          
-              
+
+
             </ul>
           </div>
           <hr>
@@ -160,7 +160,8 @@
                 <div class="row pl-3">
                   <div class="col-2 col-sm-2 col-md-2 p-0">
                     <span>
-                      <img src="../assets/images/MidnightDelivery.png" alt="Lake of Cakes midnight" style="width: 25px;">
+                      <img src="../assets/images/MidnightDelivery.png" alt="Lake of Cakes midnight"
+                        style="width: 25px;">
                     </span>
                   </div>
                   <div class="col-8 col-sm-8 col-md-8 p-0">
@@ -239,7 +240,7 @@
               <label for="nav-collapsible-1" style="width: 100%;">
                 <div class="row pl-3">
                   <div class="col-10 col-sm-10 col-md-10 p-0">
-                    <span style="position: relative; top: 4px;">Contact us </span>
+                    <span style="position: relative; top: 4px;" onclick="window.open('../Footer/contactUs.html')">Contact us </span>
                   </div>
                   <div class="col-2 col-sm-2 col-md-2 p-0">
                     <span style="position: relative; top: 8px;">
@@ -332,17 +333,17 @@
           </div>
           <div class="nav-collapsible">
             collapsible-1" style="width: 100%;">
-                <div class="row pl-3">
-                  <div class="col-10 col-sm-10 col-md-10 p-0">
-                    <span style="position: relative; top: 4px;">Login/Signup</span>
-                  </div>
-                  <div class="col-2 col-sm-2 col-md-2 p-0">
-                    <span style="position: relative; top: 8px;">
-                      <i class="fas fa-chevron-right"></i>
-                    </span>
-                  </div>
-                </div>
-              </label>
+            <div class="row pl-3">
+              <div class="col-10 col-sm-10 col-md-10 p-0">
+                <span style="position: relative; top: 4px;">Login/Signup</span>
+              </div>
+              <div class="col-2 col-sm-2 col-md-2 p-0">
+                <span style="position: relative; top: 8px;">
+                  <i class="fas fa-chevron-right"></i>
+                </span>
+              </div>
+            </div>
+            </label>
             </a>
           </div>
         </div>
@@ -353,15 +354,14 @@
           <div class="col-md-10 col-12 p-0 mt-3 ml-4">
             <div class="input-group mb-2 mt-2">
               <form id="searchForm" class="search-form" style="display: inline-flex;width: 100%;">
-                <div class="autocomplete" style="width: 100%;" >
+                <div class="autocomplete" style="width: 100%;">
                   <input class="form-control" style="width: 100% !important;
                   border: none;
                   border-bottom: 1px solid ;
-                  border-radius: unset;background-color: transparent;" type="text" id="searchBar" onkeyup=searchByUserInput(event) name="searchBar"
-                    placeholder="Search: Cakes , Flowers ,Gifts..."
-                   >
+                  border-radius: unset;background-color: transparent;" type="text" id="searchBar"
+                    onkeyup=searchByUserInput(event) name="searchBar" placeholder="Search: Cakes , Flowers ,Gifts...">
                 </div>
-                
+
                 <div class="input-group-append">
                   <button class="btn btn-outline-secondary" onclick="searchByBtn('searchBar')"
                     style="padding: 0px 16px; border-radius: 0px 15px 15px 0px;  background:transparent;color:; border: #F00;"><i
@@ -397,7 +397,7 @@
           </li>
           <li>
             <a href="#" type="button" data-toggle="modal" data-target="#exampleModal">
-                <img style="width:80px;object-fit: cover;" src="../assets/images/reminder.png" alt="">
+              <img style="width:80px;object-fit: cover;" src="../assets/images/reminder.png" alt="">
               <div
                 style="margin-top: 5px; width: 80px; background: #f00; padding: 0px 10px; color: #FFF; font-size: 12px; text-align: center;">
                 REMINDER</div>
@@ -479,8 +479,7 @@
                     <li class="product cremove3461">
                       <figure class="product-image-container">
                         <a href="" class="product-image">
-                          <img src=""
-                            style="width: 50px; object-fit:cover;" alt="product">
+                          <img src="" style="width: 50px; object-fit:cover;" alt="product">
                         </a>
 
                       </figure>
@@ -517,7 +516,7 @@
                 </div>
               </div>
             </li>
-  
+
 
 
           </ul>
@@ -908,16 +907,16 @@
   }
   function logOut() {
     let dbref = db.collection('Customers');
-    
+
     dbref.doc(checkUser).update({
       token: "null"
 
     }).then(function () {
-      window.localStorage.setItem("locLoggedInUser","null")
+      window.localStorage.setItem("locLoggedInUser", "null")
       window.plugins.googleplus.logout(
-            function (msg) {
-              alert("Logged Out Successfully"); // do something useful instead of alerting
-            });
+        function (msg) {
+          alert("Logged Out Successfully"); // do something useful instead of alerting
+        });
       location.reload();
     });
   }
@@ -926,7 +925,7 @@
 
 <style>
   .drobt1 {
-    transform: translateX(-101%);
+    transform: translateX(0%);
   }
 
   .drobt2 {
@@ -940,7 +939,10 @@
     if ($('.drobt0').hasClass('drobt1')) {
       $('.drobt0').removeClass('drobt1');
       $('.drobt0').addClass('drobt2');
+                scrollNav(0, speed);
+                $('body').addClass("fixed-position");
     } else {
+            $('.menu > ul > li > a').css('z-index', -1);
       $('.drobt0').removeClass('drobt2');
       $('.drobt0').addClass('drobt1');
     }

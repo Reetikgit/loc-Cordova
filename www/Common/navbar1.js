@@ -1,106 +1,116 @@
 // console.log("navbar1.js");
 
-const wholeNavigationPcHTML = document.querySelector("#whole-navigation-pc");
 
-const extractChildCat = (data, subId, docId) => {
-  let childLi = "";
-  data.childCategories.map((doc) => {
-    // let docData = doc.data();
-    childLi += `
-      <li><a href="../Products/products.html?cat=${docId}&&sub=${subId}&&child=${doc.id}">${doc.name}</a></li>
-    `;
-  });
-  // console.log(childLi);
-  return childLi;
-};
 
-const extractSubCat = (data, docId) => {
-  let subLi = "";
-  data.subCategory.map((doc) => {
-    // let docData = doc.data(); 
-    let childCat = extractChildCat(doc, doc.id, docId);
+// const wholeNavigationPcHTML = document.querySelector("#whole-navigation-pc");
 
-    subLi += `
-    <li >
-      <a style="top:0;padding:5px !important;position:sticky;z-index:999 !important;background:white !important" href="../Products/products.html?cat=${docId}&&sub=${doc.id}">${doc.name}</a>
-      <ul style="z-index:0 !important" > ${childCat}</ul>
-    </li>
-    `;
-  });
-  return subLi;
-};
+// const extractChildCat = (data, subId, docId) => {
+//   let childLi = "";
+//   data.childCategories.map((doc) => {
+//     // let docData = doc.data();
+//     childLi += `
+//       <li><a href="../Products/products.html?cat=${docId}&&sub=${subId}&&child=${doc.id}">${doc.name}</a></li>
+//     `;
+//   });
+//   // console.log(childLi);
+//   return childLi;
+// };
 
-db.collection("categories").onSnapshot(async (snapshots) => {
-  let snapshotDocs = snapshots.docs;
-  let li = "";
-  let liMob = "";
-  let tempArr = [];
-  for (let doc of snapshotDocs) {
-    let docData = doc.data();
-    // console.log(docData);
-    tempArr.push({ d: docData, dId: doc.id });
-  }
+// const extractSubCat = (data, docId) => {
+//   let subLi = "";
+//   data.subCategory.map((doc) => {
+//     // let docData = doc.data(); 
+//     let childCat = extractChildCat(doc, doc.id, docId);
 
-  tempArr.sort(function (a, b) {
-    return +b.d.priority - +a.d.priority;
-  });
+//     subLi += `
+//     <li >
+//       <a style="top:0;padding:5px !important;position:sticky;z-index:999 !important;background:white !important" href="../Products/products.html?cat=${docId}&&sub=${doc.id}">${doc.name}</a>
+//       <ul style="z-index:0 !important" > ${childCat}</ul>
+//     </li>
+//     `;
+//   });
+//   return subLi;
+// };
 
-  for (let data of tempArr) {
-    // console.log(data);
-    let subCat = extractSubCat(data.d, data.dId);
-    li += `
-      <li >
-        <a href="../Products/products.html?cat=${data.dId}">${data.d.name}</a>
-        <ul>
-          ${subCat}
-          <li>
-            <ul>
-              <li><img class="navimage" src="${data.d.imgUrl}"></li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-      `;
-    liMob += `
-      <li >
-        <a href="#!" ><span onclick="navigateTo('../Products/products.html?cat=${data.dId}')">${data.d.name}</span><i class="fa fa-chevron-down" style="margin-left: 10%;float: right;"></i></a>
-        <ul>
-          ${subCat}
-          <li>
-            <ul>
-              <li><img class="navimage" src="${data.d.imgUrl}"></li>
-            </ul>
-          </li>
-        </ul>
-      </li>`;
-  }
-  const wholeNavigationPcHTML = document.querySelector("#whole-navigation-pc");
-  wholeNavigationPcHTML.innerHTML = li;
-  const wholeNavigationMobile = document.querySelector(
-    "#whole-navigation-mobile"
-  );
-  wholeNavigationMobile.innerHTML = liMob;
-  $(".menu > ul > li").hover(function (e) {
-    if ($(window).width() > 943) {
-      $(this).children("ul").stop(true, false).fadeToggle(150);
-      e.preventDefault();
-    }
-  });
-  $(".menu > ul > li").click(function () {
-    if ($(window).width() <= 943) {
-      $(this).children("ul").fadeToggle(150);
-    }
-  });
-  $(".menu-mobile").click(function (e) {
-    $(".menu > ul").toggleClass("show-on-mobile");
-    e.preventDefault();
-  });
+// db.collection("categories").onSnapshot(async (snapshots) => {
+//   let snapshotDocs = snapshots.docs;
+//   let li = "";
+//   let liMob = "";
+//   let tempArr = [];
+//   for (let doc of snapshotDocs) {
+//     let docData = doc.data();
+//     // console.log(docData);
+//     tempArr.push({ d: docData, dId: doc.id });
+//   }
 
-  $(window).resize(function () {
-    $(".menu > ul > li").children("ul").hide();
-    $(".menu > ul").removeClass("show-on-mobile");
-  });
-});
+//   tempArr.sort(function (a, b) {
+//     return +b.d.priority - +a.d.priority;
+//   });
+
+//   for (let data of tempArr) {
+//     // console.log(data);
+//     let subCat = extractSubCat(data.d, data.dId);
+//     li += `
+//       <li >
+//         <a href="../Products/products.html?cat=${data.dId}">${data.d.name}</a>
+//         <ul>
+//           ${subCat}
+//           <li>
+//             <ul>
+//               <li><img class="navimage" src="${data.d.imgUrl}"></li>
+//             </ul>
+//           </li>
+//         </ul>
+//       </li>
+//       `;
+//     liMob += `
+//       <li >
+//         <a href="#!" ><span onclick="navigateTo('../Products/products.html?cat=${data.dId}')">${data.d.name}</span><i class="fa fa-chevron-down" style="margin-left: 10%;float: right;"></i></a>
+//         <ul>
+//           ${subCat}
+//           <li>
+//             <ul>
+//               <li><img class="navimage" src="${data.d.imgUrl}"></li>
+//             </ul>
+//           </li>
+//         </ul>
+//       </li>`;
+//   }
+//   const wholeNavigationPcHTML = document.querySelector("#whole-navigation-pc");
+//   wholeNavigationPcHTML.innerHTML = li;
+//   const wholeNavigationMobile = document.querySelector(
+//     "#whole-navigation-mobile"
+//   );
+//   wholeNavigationMobile.innerHTML = liMob;
+ 
+//   $(".menu > ul > li").hover(function (e) {
+ 
+//     $('.menu > ul > li > a').css('z-index', 1000);
+//     if ($(window).width() > 943) {
+//       $(this).children("ul").stop(true, false).fadeToggle(150);
+//       e.preventDefault();
+//     }
+//   });
+//   $(".menu > ul > li").click(function () {
+  
+//     $('.menu > ul > li > a').css('z-index', 1000);
+//     if ($(window).width() <= 943) {
+//       $('.menu > ul > li > a').css('z-index', 1000);
+//       $(this).children("ul").fadeToggle(150);
+//     }
+//   });
+//   $(".menu-mobile").click(function (e) {
+    
+//     $('.menu > ul > li > a').css('z-index', 1000);
+//     $(".menu > ul").toggleClass("show-on-mobile");
+//     e.preventDefault();
+//   });
+
+//   $(window).resize(function () {
+//     $(".menu > ul > li").children("ul").hide();
+//     $(".menu > ul").removeClass("show-on-mobile");
+//   });
+// });
 function navigateTo(location) {
   window.location = location;
 }
@@ -487,3 +497,30 @@ db.collection('miscellaneous').doc('siteStatus').onSnapshot(siteDoc => {
   }
 })
 
+setInterval(function(){
+  if(navigator.connection.type == 'none' ) {
+    window.localStorage.setItem("url",window.location.href);
+    window.location = "../noInternet.html"
+    // alert("LOST")
+  } else {
+    // alert("ITS THERE")
+    window.localStorage.removeItem("url");
+  }
+},1000)
+$(".drobt").click(function () {
+  $('.drobt0').addClass('drobt1');
+  // $('.menu > ul > li > a').css('z-index',1);
+  if ($('.drobt0').hasClass('drobt1')) { // $('.drobt1').transform="translateX(0%)"
+
+      $('.menu > ul > li > a').css('z-index', -1);
+      $('.drobt0').removeClass('drobt1');
+      $('.drobt0').addClass('drobt2');
+      scrollNav(0, speed);
+      $('body').addClass("fixed-position");
+
+
+  } 
+});
+setInterval(function(){
+  $('.menu > ul > li > a').css('z-index', -1);
+},2000)

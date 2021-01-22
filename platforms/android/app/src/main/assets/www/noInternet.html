@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+  <head>
+   
+    <meta charset="utf-8">
+    <title>Settings</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<script src="http://ajax.microsoft.com/ajax/jQuery/jquery-1.4.4.min.js"></script>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-ios.css">
+<link rel="stylesheet" href="./assets/css/all.css">
+<link rel="stylesheet" href="./assets/css/base.css">
+<link rel="stylesheet" href="./assets/css/styles.css">
+<link rel="stylesheet" href="./assets/css/mega-menu.css">
+<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+<!-- <link rel="stylesheet" href="./assets//css/randomStyles.css"> -->
+<link rel="stylesheet" href="./assets/css/animate.css">
+<link rel="stylesheet" href="assets/css/animation.css">
+<script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://ajax.aspnetcdn.com/ajax/modernizr/modernizr-2.7.2.js"></script>
+<script src="https://kit.fontawesome.com/92b764e504.js" crossorigin="anonymous"></script>
+   <!-- mobile specific metas
+================================================== -->
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<!--   <link href='https://fonts.googleapis.com/css?family=Permanent+Marker:400' rel='stylesheet' type='text/css'> -->
+
+  <!-- CSS
+================================================== -->
+</head>
+
+<!-- STYLE CSS -->
+
+
+
+<style>
+@import url('https://fonts.googleapis.com/css?family=Rubik&display=swap');
+
+body {
+    font-family: 'Rubik', sans-serif;
+    background: linear-gradient(180deg, rgb(255, 166, 166), #fff);
+    background-repeat: no-repeat
+}
+
+.container {
+    margin-top: 100px !important
+}
+
+h3 {
+    color: #9E9E9E;
+    font-size: calc(20px + 6 * ((100vw - 320px) / 680))
+}
+
+button:focus {
+    box-shadow: none !important;
+    outline-width: 0
+}
+
+.card {
+    border-radius: 0;
+    width: calc(475px + 10 * ((100vw - 320px) / 680));
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.8)
+}
+
+.card-header {
+    /* background-color: #F44236 !important; */
+    color: #fff
+}
+
+img {
+    width: 180px !important
+}
+
+.btn-primary {
+    background: #B52AB4;
+    color: #fff !important;
+    border-radius: 0 !important;
+    letter-spacing: 1px
+}
+
+.btn-primary:hover {
+    background: #B52AB4
+}
+
+.btn-primary:focus {
+    background: #B52AB4 !important
+}
+
+.btn-success {
+    border: 1px solid #B52AB4;
+    padding: 8px 20px 8px 20px !important;
+    border-radius: 20px !important
+}
+
+.btn-success:hover {
+    background: #B52AB4;
+    color: #fff !important;
+    border-color: #B52AB4 !important
+}
+
+.btn-success:focus {
+    background: #B52AB4 !important;
+    color: #fff !important
+}
+
+.btn-success {
+    background: #B52AB4 !important
+}
+
+.inner li {
+    list-style-type: disc !important
+}
+
+.fa-times-circle {
+    vertical-align: middle !important;
+    cursor: pointer !important
+}
+
+@media (max-width: 654px) {
+    .card {
+        width: unset
+    }
+}
+</style>
+
+<body onLoad="startProgram();"> 
+     <br>
+     <br>
+<div class="Container">
+
+
+    <div class="container my-5 d-flex justify-content-center">
+        <div class="row justify-content-center ">
+            <div class="col">
+                <div class="card ">
+                    <div class="card-header pb-0 bg-white border-0 text-center px-sm-4">
+                        <h6 class="text-left mt-4 font-weight-bold mb-0"><span><i class="fa fa-times-circle fa-2x mr-3 " aria-hidden="true"></i> </span> No internet connection</h6> <span class="img-1 text-center"><img src="assets/images/logo-min.png" class="img-fluid my-4 " /></span>
+                    </div>
+                    <div class="card-body px-sm-4 mb-3">
+                        <ul class="list-unstyled text-muted">
+                            <li>Please re-connect to the internet to continue to use Lake of cakes.</li>
+                            <li>If you encounter problems:</li>
+                            <ul class="mt-2 inner">
+                                <li>Try restarting wireless connection on this device.</li>
+                                <li>Move close to your wireless access point.</li>
+                            </ul>
+                        </ul>
+                        <div class="row justify-content-end mt-4 ">
+                            <!-- <div class="col-auto"><button type="button" class="btn btn-success"><span>Try Again</span></button></div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+
+<script type="text/javascript" language="javascript">
+  //alert(window.localStorage['url'])
+  function startProgram() {
+    setTimeout('autoRun()',2000);
+  }
+
+  function autoRun() {
+    if(navigator.connection.type != 'none') {
+      url_link = window.localStorage['url']
+      window.localStorage.removeItem("url");
+      window.location = url_link == undefined ? "index.html" : url_link
+    }
+    setTimeout('autoRun()',2000);
+  }
+</script>
+</html>

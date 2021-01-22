@@ -1,6 +1,12 @@
 const db = firebase.firestore();
-const storageService = firebase.storage;
+// ////////////////////////////////////////////////////////////////////////////////////////////////////
 
+window.localStorage.removeItem('cartLocal');
+
+// ////////////////////////////////////////////////////////////////////////////////////////////////////
+
+const storageService = firebase.storage;
+var uId;
 let USER_ID, USER_DETAILS, USER_REF;
 
 const checkAuth = async () => {
@@ -8,6 +14,7 @@ const checkAuth = async () => {
     window.location.href = "./../Auth/login.html";
   }
   // console.log('aaaa');
+  uId=localStorage.getItem("locLoggedInUser");
   USER_ID = localStorage.getItem("locLoggedInUser");
   // console.log(USER_ID);
   USER_REF = await db.collection("Customers").doc(USER_ID);
@@ -411,6 +418,7 @@ const addonModal = (e) => {
           <h5 class="name responsiveName" style="text-align: center !important;float: inherit;font-size: 12px;">
             ${docData.name}
           </h5>
+          <br>
           <h4 class="price"
             style="text-align: center !important;float: inherit;font-size: 13px;">₹ ${docData.price}
           </h4>
@@ -566,7 +574,7 @@ const checkoutProds = async (e) => {
   }
   await USER_REF.update(USER_DETAILS);
   // console.log(USER_DETAILS);
-  window.location.href = `./../Payment/checkout.html?checkout=${orderId}`;
+  var refBrowser=cordova.InAppBrowser.open(`https://lakeofcakes.com/Payment/checkout.html?checkout=${orderId}&&user=${uId}`, `_blank`, `location=no`);
 };
 
 prodWithAddonsHTML.addEventListener("click", checkoutProds);

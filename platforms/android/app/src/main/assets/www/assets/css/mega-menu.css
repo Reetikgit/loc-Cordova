@@ -1,7 +1,7 @@
 
 .menu {
 	width: 95%;
-	margin: auto;
+	
 
 }
 
@@ -11,6 +11,7 @@
 	border-radius: 2px;
 	background:#ffffff;
 	padding: 0px;
+	z-index: 999999999999999999999 !important;
 
 }
 
@@ -270,12 +271,21 @@ Mobile style's
 		display: block;
 	}
 	.menu>ul>li a {
+		color:black !important;;
 		font-weight:444;
 		padding: 1em;
 		width: 100%;
 		display: block;
 		font-size: 12px;
+		/* z-index:-1; */
 	}
+	.menu>ul>li a:hover {
+		
+		font-size: 12px;
+		/* z-index: 999999; */
+		/* background-color: red; */
+	}
+	
 	.menu>ul>li>ul {
 		position: relative;
 		padding: 0 40px;
